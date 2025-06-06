@@ -20,9 +20,11 @@ export class TransactionsService {
             category: { id: categoryId },
         });
         const res = await this.repo.save(entity);
+        console.log('Transaction created:', data);
 
         //ใน transactions.service.ts หลังจาก create รายรับ
         if (data.type === 'income' && data.amount !== undefined) {
+            console.log('Applying income to goal:', userId, data.amount);
             await this.goalsService.applyIncomeToGoal(userId ?? 0, +data.amount);
         }
         return {
