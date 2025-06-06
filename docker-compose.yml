@@ -1,0 +1,14 @@
+services:
+  meedeeapi:
+    image: siwapan/upskill:5.25.9
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    restart: on-failure
+    volumes:
+      - "my_data:/app/uploads" # Mount โค้ดจากเครื่อง host ไปยัง container
+    ports:
+      - "3000:3000"
+volumes:
+  my_data:
+    name: upload_custom_volume  # ตั้งชื่อ volume แบบกำหนดเอง
