@@ -21,4 +21,21 @@ export class AiController {
         }
         return this.aiService.getSavingAdvice(goal.goalName, goal.amountTarget, goal.currentAmount, goal.dueDate.toString());
     }
+
+    @Get('gemini-advice/:goalId')
+    async getGeminiAdvice(@Param('goalId') goalId: number) {
+        const goal = await this.goalsService.findOne(goalId);
+        console.log('Goal:', goal);
+        if (goal === null) {
+            return {
+                status: 'error',
+                message: 'Goal not found',
+            };
+        }
+        const advice = await this.aiService.getGeminiAdvice(goal.goalName, goal.amountTarget, goal.currentAmount, goal.dueDate.toString());
+        return {
+            status: 'success',
+            advice: advice,
+        };
+    }
 }
