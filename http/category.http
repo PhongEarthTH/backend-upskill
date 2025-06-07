@@ -1,0 +1,8 @@
+PUT http://localhost:3000/categories/7
+Content-Type: application/json
+
+{
+    "name": "124",
+    "type": "expense",
+    "userId": 1
+}

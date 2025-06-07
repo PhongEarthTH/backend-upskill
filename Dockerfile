@@ -13,7 +13,7 @@ RUN npm install --legacy-peer-deps
 # Copy the rest of the application code to the working directory
 COPY . .
 # Copy .env.bnk to .env
-COPY .env.bnk .env
+COPY .env .env
 
 # Build the NestJS application
 RUN npm run build
